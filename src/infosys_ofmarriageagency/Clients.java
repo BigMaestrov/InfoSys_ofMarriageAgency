@@ -10,7 +10,7 @@ import java.util.Scanner;
 /*
  *Реализация сущности "Клиенты"
  */
-public class Clients {
+public class Clients extends Table{
 
     String clientID;
     String fullName;
@@ -26,11 +26,12 @@ public class Clients {
     String description;
     String signID;
     String relationID;
-    String nationalitieID;
-    String adress;
+    String nationalitiesID;
+    String address;
     String phoneNumber;
     String passportData;
     String informationAboutPartner;
+    String pathToFile;
 
     public Clients() {
     }
@@ -409,12 +410,12 @@ public class Clients {
         }
     }
 
-    public String getNationalitieID() {
-        return nationalitieID;
+    public String getNationalitiesID() {
+        return nationalitiesID;
     }
 
-    public void setNationalitieID(String nationalitieID) {
-        this.nationalitieID = nationalitieID;
+    public void setNationalitiesID(String nationalitiesID) {
+        this.nationalitiesID = nationalitiesID;
     }
 
     public void setNationalitieID(int size) {
@@ -430,18 +431,18 @@ public class Clients {
                 System.out.println("Размер введенной строки слишком большой");
             } else if (answear.length() < size) {
                 answear = fullerID_EmptySpace(answear, size);
-                this.nationalitieID = answear;
+                this.nationalitiesID = answear;
                 break;
             }
         }
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setAdress(int size) {
@@ -455,7 +456,7 @@ public class Clients {
                 System.out.println("Размер введенной строки слишком большой");
             } else if (answear.length() < size) {
                 answear = fullEmptySpace(answear, size);
-                this.adress = answear;
+                this.address = answear;
                 break;
             }
         }
@@ -601,10 +602,10 @@ public class Clients {
                             clients[i].setRelationID(arrSplit[j]);
                             break;
                         case 14:
-                            clients[i].setNationalitieID(arrSplit[j]);
+                            clients[i].setNationalitiesID(arrSplit[j]);
                             break;
                         case 15:
-                            clients[i].setAdress(arrSplit[j]);
+                            clients[i].setAddress(arrSplit[j]);
                             break;
                         case 16:
                             clients[i].setPhoneNumber(arrSplit[j]);
@@ -686,10 +687,10 @@ public class Clients {
                             clients[i].setRelationID(arrSplit[j]);
                             break;
                         case 14:
-                            clients[i].setNationalitieID(arrSplit[j]);
+                            clients[i].setNationalitiesID(arrSplit[j]);
                             break;
                         case 15:
-                            clients[i].setAdress(arrSplit[j]);
+                            clients[i].setAddress(arrSplit[j]);
                             break;
                         case 16:
                             clients[i].setPhoneNumber(arrSplit[j]);
@@ -780,10 +781,10 @@ public class Clients {
                             clients[i].setRelationID(arrSplit[j]);
                             break;
                         case 14:
-                            clients[i].setNationalitieID(arrSplit[j]);
+                            clients[i].setNationalitiesID(arrSplit[j]);
                             break;
                         case 15:
-                            clients[i].setAdress(arrSplit[j]);
+                            clients[i].setAddress(arrSplit[j]);
                             break;
                         case 16:
                             clients[i].setPhoneNumber(arrSplit[j]);
@@ -872,10 +873,10 @@ public class Clients {
                             clients[i].setRelationID(arrSplit[j]);
                             break;
                         case 14:
-                            clients[i].setNationalitieID(arrSplit[j]);
+                            clients[i].setNationalitiesID(arrSplit[j]);
                             break;
                         case 15:
-                            clients[i].setAdress(arrSplit[j]);
+                            clients[i].setAddress(arrSplit[j]);
                             break;
                         case 16:
                             clients[i].setPhoneNumber(arrSplit[j]);
@@ -903,8 +904,8 @@ public class Clients {
                 sizes[11] = clients[i].getDescription().length();
                 sizes[12] = clients[i].getSignID().length();
                 sizes[13] = clients[i].getRelationID().length();
-                sizes[14] = clients[i].getNationalitieID().length();
-                sizes[15] = clients[i].getAdress().length();
+                sizes[14] = clients[i].getNationalitiesID().length();
+                sizes[15] = clients[i].getAddress().length();
                 sizes[16] = clients[i].getPhoneNumber().length();
                 sizes[17] = clients[i].getPassportData().length();
                 sizes[18] = clients[i].getInformationAboutPartner().length();
@@ -982,9 +983,9 @@ public class Clients {
             writer.append('/');
             writer.write(newClient.getRelationID());
             writer.append('/');
-            writer.write(newClient.getNationalitieID());
+            writer.write(newClient.getNationalitiesID());
             writer.append('/');
-            writer.write(newClient.getAdress());
+            writer.write(newClient.getAddress());
             writer.append('/');
             writer.write(newClient.getPhoneNumber());
             writer.append('/');
@@ -1062,10 +1063,10 @@ public class Clients {
                             clients[i].setRelationID(arrSplit[j]);
                             break;
                         case 14:
-                            clients[i].setNationalitieID(arrSplit[j]);
+                            clients[i].setNationalitiesID(arrSplit[j]);
                             break;
                         case 15:
-                            clients[i].setAdress(arrSplit[j]);
+                            clients[i].setAddress(arrSplit[j]);
                             break;
                         case 16:
                             clients[i].setPhoneNumber(arrSplit[j]);
@@ -1172,9 +1173,9 @@ public class Clients {
                     writer.append('/');
                     writer.write(newClient.getRelationID());
                     writer.append('/');
-                    writer.write(newClient.getNationalitieID());
+                    writer.write(newClient.getNationalitiesID());
                     writer.append('/');
-                    writer.write(newClient.getAdress());
+                    writer.write(newClient.getAddress());
                     writer.append('/');
                     writer.write(newClient.getPhoneNumber());
                     writer.append('/');
@@ -1225,46 +1226,12 @@ public class Clients {
                 + clients.getDescription() + "|"
                 + clients.getSignID() + "|"
                 + clients.getRelationID() + "|"
-                + clients.getNationalitieID() + "|"
-                + clients.getAdress() + "|"
+                + clients.getNationalitiesID() + "|"
+                + clients.getAddress() + "|"
                 + clients.getPhoneNumber() + "|"
                 + clients.getPassportData() + "|"
                 + clients.getInformationAboutPartner());
         return;
-    }
-
-    /*
-    Метод проверки введенной строки на то, является ли она числом
-     */
-    public static boolean isNumber(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    /*
-    Метод заполнения полей до размера строк в текстовом файле
-     */
-    public static String fullEmptySpace(String entered, int sizeExample) {
-        int size = sizeExample - entered.length();
-        for (int i = 0; i < size; i++) {
-            entered += " ";
-        }
-        return entered;
-    }
-
-    /*
-    Метод заполнения ID до размера строк в текстовом файле
-     */
-    public static String fullerID_EmptySpace(String entered, int sizeExample) {
-        int size = sizeExample - entered.length();
-        for (int i = 0; i < size; i++) {
-            entered = "0" + entered;
-        }
-        return entered + " ";
     }
 
     /*
@@ -1327,10 +1294,10 @@ public class Clients {
                             clients[i].setRelationID(arrSplit[j]);
                             break;
                         case 14:
-                            clients[i].setNationalitieID(arrSplit[j]);
+                            clients[i].setNationalitiesID(arrSplit[j]);
                             break;
                         case 15:
-                            clients[i].setAdress(arrSplit[j]);
+                            clients[i].setAddress(arrSplit[j]);
                             break;
                         case 16:
                             clients[i].setPhoneNumber(arrSplit[j]);
@@ -1355,14 +1322,14 @@ public class Clients {
                         + clients[i].getBadHabits() + "|"
                         + clients[i].getHobby() + "|"
                         + clients[i].getDescription() + "|"
-                        + clients[i].getAdress() + "|"
+                        + clients[i].getAddress() + "|"
                         + clients[i].getPhoneNumber() + "|"
                         + clients[i].getPassportData() + "|"
                         + clients[i].getInformationAboutPartner() + "|");
                 if (i > 1) {
                     ZodiacSigns.printRequestZodiacSignData(clients[i].getSignID().trim());
                     Relations.printRequestRelationsData(clients[i].getRelationID().trim());
-                    Nationalities.printRequestNationalitieData(clients[i].getNationalitieID().trim());
+                    Nationalities.printRequestNationalitieData(clients[i].getNationalitiesID().trim());
                 }
                 if (i == 0) {
                     ZodiacSigns.printSelectedZodiacSignsDataForRequest(i);
@@ -1443,10 +1410,10 @@ public class Clients {
                             clients[i].setRelationID(arrSplit[j]);
                             break;
                         case 14:
-                            clients[i].setNationalitieID(arrSplit[j]);
+                            clients[i].setNationalitiesID(arrSplit[j]);
                             break;
                         case 15:
-                            clients[i].setAdress(arrSplit[j]);
+                            clients[i].setAddress(arrSplit[j]);
                             break;
                         case 16:
                             clients[i].setPhoneNumber(arrSplit[j]);
@@ -1472,7 +1439,7 @@ public class Clients {
                             + clients[i].getBadHabits() + "|"
                             + clients[i].getHobby() + "|"
                             + clients[i].getDescription() + "|"
-                            + clients[i].getAdress() + "|"
+                            + clients[i].getAddress() + "|"
                             + clients[i].getPhoneNumber() + "|"
                             + clients[i].getPassportData() + "|"
                             + clients[i].getInformationAboutPartner() + "|");
@@ -1544,10 +1511,10 @@ public class Clients {
                             clients[i].setRelationID(arrSplit[j]);
                             break;
                         case 14:
-                            clients[i].setNationalitieID(arrSplit[j]);
+                            clients[i].setNationalitiesID(arrSplit[j]);
                             break;
                         case 15:
-                            clients[i].setAdress(arrSplit[j]);
+                            clients[i].setAddress(arrSplit[j]);
                             break;
                         case 16:
                             clients[i].setPhoneNumber(arrSplit[j]);
@@ -1573,7 +1540,7 @@ public class Clients {
                             + clients[i].getBadHabits() + "|"
                             + clients[i].getHobby() + "|"
                             + clients[i].getDescription() + "|"
-                            + clients[i].getAdress() + "|"
+                            + clients[i].getAddress() + "|"
                             + clients[i].getPhoneNumber() + "|"
                             + clients[i].getPassportData() + "|"
                             + clients[i].getInformationAboutPartner() + "|");
@@ -1647,10 +1614,10 @@ public class Clients {
                             clients[i].setRelationID(arrSplit[j]);
                             break;
                         case 14:
-                            clients[i].setNationalitieID(arrSplit[j]);
+                            clients[i].setNationalitiesID(arrSplit[j]);
                             break;
                         case 15:
-                            clients[i].setAdress(arrSplit[j]);
+                            clients[i].setAddress(arrSplit[j]);
                             break;
                         case 16:
                             clients[i].setPhoneNumber(arrSplit[j]);
@@ -1676,7 +1643,7 @@ public class Clients {
                             + clients[i].getBadHabits() + "|"
                             + clients[i].getHobby() + "|"
                             + clients[i].getDescription() + "|"
-                            + clients[i].getAdress() + "|"
+                            + clients[i].getAddress() + "|"
                             + clients[i].getPhoneNumber() + "|"
                             + clients[i].getPassportData() + "|"
                             + clients[i].getInformationAboutPartner());
@@ -1695,7 +1662,7 @@ public class Clients {
                             + clients[i].getBadHabits() + "|"
                             + clients[i].getHobby() + "|"
                             + clients[i].getDescription() + "|"
-                            + clients[i].getAdress() + "|"
+                            + clients[i].getAddress() + "|"
                             + clients[i].getPhoneNumber() + "|"
                             + clients[i].getPassportData() + "|"
                             + clients[i].getInformationAboutPartner());
@@ -1772,10 +1739,10 @@ public class Clients {
                             clients[i].setRelationID(arrSplit[j]);
                             break;
                         case 14:
-                            clients[i].setNationalitieID(arrSplit[j]);
+                            clients[i].setNationalitiesID(arrSplit[j]);
                             break;
                         case 15:
-                            clients[i].setAdress(arrSplit[j]);
+                            clients[i].setAddress(arrSplit[j]);
                             break;
                         case 16:
                             clients[i].setPhoneNumber(arrSplit[j]);
@@ -1801,7 +1768,7 @@ public class Clients {
                             + clients[i].getBadHabits() + "|"
                             + clients[i].getHobby() + "|"
                             + clients[i].getDescription() + "|"
-                            + clients[i].getAdress() + "|"
+                            + clients[i].getAddress() + "|"
                             + clients[i].getPhoneNumber() + "|"
                             + clients[i].getPassportData() + "|"
                             + clients[i].getInformationAboutPartner());
@@ -1820,7 +1787,7 @@ public class Clients {
                             + clients[i].getBadHabits() + "|"
                             + clients[i].getHobby() + "|"
                             + clients[i].getDescription() + "|"
-                            + clients[i].getAdress() + "|"
+                            + clients[i].getAddress() + "|"
                             + clients[i].getPhoneNumber() + "|"
                             + clients[i].getPassportData() + "|"
                             + clients[i].getInformationAboutPartner());
@@ -1897,10 +1864,10 @@ public class Clients {
                             clients[i].setRelationID(arrSplit[j]);
                             break;
                         case 14:
-                            clients[i].setNationalitieID(arrSplit[j]);
+                            clients[i].setNationalitiesID(arrSplit[j]);
                             break;
                         case 15:
-                            clients[i].setAdress(arrSplit[j]);
+                            clients[i].setAddress(arrSplit[j]);
                             break;
                         case 16:
                             clients[i].setPhoneNumber(arrSplit[j]);
@@ -1926,12 +1893,12 @@ public class Clients {
                             + clients[i].getBadHabits() + "|"
                             + clients[i].getHobby() + "|"
                             + clients[i].getDescription() + "|"
-                            + clients[i].getAdress() + "|"
+                            + clients[i].getAddress() + "|"
                             + clients[i].getPhoneNumber() + "|"
                             + clients[i].getPassportData() + "|"
                             + clients[i].getInformationAboutPartner());
                 }
-                if ((clients[i].getNationalitieID().trim()).equals(ID.trim())) {
+                if ((clients[i].getNationalitiesID().trim()).equals(ID.trim())) {
                     flag=true;
                     System.out.println(
                             clients[i].getFullName() + "|"
@@ -1945,7 +1912,7 @@ public class Clients {
                             + clients[i].getBadHabits() + "|"
                             + clients[i].getHobby() + "|"
                             + clients[i].getDescription() + "|"
-                            + clients[i].getAdress() + "|"
+                            + clients[i].getAddress() + "|"
                             + clients[i].getPhoneNumber() + "|"
                             + clients[i].getPassportData() + "|"
                             + clients[i].getInformationAboutPartner());
@@ -2021,10 +1988,10 @@ public class Clients {
                             clients[i].setRelationID(arrSplit[j]);
                             break;
                         case 14:
-                            clients[i].setNationalitieID(arrSplit[j]);
+                            clients[i].setNationalitiesID(arrSplit[j]);
                             break;
                         case 15:
-                            clients[i].setAdress(arrSplit[j]);
+                            clients[i].setAddress(arrSplit[j]);
                             break;
                         case 16:
                             clients[i].setPhoneNumber(arrSplit[j]);
@@ -2050,7 +2017,7 @@ public class Clients {
                             + clients[i].getBadHabits() + "|"
                             + clients[i].getHobby() + "|"
                             + clients[i].getDescription() + "|"
-                            + clients[i].getAdress() + "|"
+                            + clients[i].getAddress() + "|"
                             + clients[i].getPhoneNumber() + "|"
                             + clients[i].getPassportData() + "|"
                             + clients[i].getInformationAboutPartner());
@@ -2069,7 +2036,7 @@ public class Clients {
                             + clients[i].getBadHabits() + "|"
                             + clients[i].getHobby() + "|"
                             + clients[i].getDescription() + "|"
-                            + clients[i].getAdress() + "|"
+                            + clients[i].getAddress() + "|"
                             + clients[i].getPhoneNumber() + "|"
                             + clients[i].getPassportData() + "|"
                             + clients[i].getInformationAboutPartner());
@@ -2145,10 +2112,10 @@ public class Clients {
                             clients[i].setRelationID(arrSplit[j]);
                             break;
                         case 14:
-                            clients[i].setNationalitieID(arrSplit[j]);
+                            clients[i].setNationalitiesID(arrSplit[j]);
                             break;
                         case 15:
-                            clients[i].setAdress(arrSplit[j]);
+                            clients[i].setAddress(arrSplit[j]);
                             break;
                         case 16:
                             clients[i].setPhoneNumber(arrSplit[j]);
@@ -2174,7 +2141,7 @@ public class Clients {
                             + clients[i].getBadHabits() + "|"
                             + clients[i].getHobby() + "|"
                             + clients[i].getDescription() + "|"
-                            + clients[i].getAdress() + "|"
+                            + clients[i].getAddress() + "|"
                             + clients[i].getPhoneNumber() + "|"
                             + clients[i].getPassportData() + "|"
                             + clients[i].getInformationAboutPartner());
@@ -2193,7 +2160,7 @@ public class Clients {
                             + clients[i].getBadHabits() + "|"
                             + clients[i].getHobby() + "|"
                             + clients[i].getDescription() + "|"
-                            + clients[i].getAdress() + "|"
+                            + clients[i].getAddress() + "|"
                             + clients[i].getPhoneNumber() + "|"
                             + clients[i].getPassportData() + "|"
                             + clients[i].getInformationAboutPartner());

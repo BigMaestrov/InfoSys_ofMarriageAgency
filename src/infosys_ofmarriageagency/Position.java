@@ -10,13 +10,14 @@ import java.util.Scanner;
 /*
  *Реализация сущности "Должности"
  */
-public class Position {
+public class Position extends Table{
 
     String PositionID;
     String PositionName;
     String Salary;
     String Responsibilities;
     String Requirements;
+    String pathToFile;
 
     public Position() {
     }
@@ -620,39 +621,5 @@ public class Position {
                 + positions.getResponsibilities() + "|"
                 + positions.getRequirements());
         return;
-    }
-
-    /*
-    Метод заполнения ID до размера строк в текстовом файле
-    */
-    public static String fullerID_EmptySpace(String entered, int sizeExample) {
-        int size = sizeExample - entered.length();
-        for (int i = 0; i < size; i++) {
-            entered = "0" + entered;
-        }
-        return entered + " ";
-    }
-
-    /*
-    Метод заполнения полей до размера строк в текстовом файле
-    */
-    public static String fullEmptySpace(String entered, int sizeExample) {
-        int size = sizeExample - entered.length();
-        for (int i = 0; i < size; i++) {
-            entered += " ";
-        }
-        return entered;
-    }
-
-    /*
-    Метод проверки введенной строки на то, является ли она числом
-    */
-    public static boolean isNumber(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 }

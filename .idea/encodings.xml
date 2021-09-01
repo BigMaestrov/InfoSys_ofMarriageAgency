@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/TextFiles/AddServices.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/TextFiles/Clients.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/TextFiles/Employee.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/TextFiles/Nationalities.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/TextFiles/Position.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/TextFiles/Relation.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/TextFiles/Services.txt" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/TextFiles/ZodiacSign.txt" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/src/infosys_ofmarriageagency/AdditionalServices.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/src/infosys_ofmarriageagency/Clients.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/src/infosys_ofmarriageagency/Employee.java" charset="windows-1251" />

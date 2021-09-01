@@ -10,11 +10,12 @@ import java.util.Scanner;
 /*
  *Реализация сущности "Знаки злдиака"
  */
-public class ZodiacSigns {
+public class ZodiacSigns extends Table{
 
     String signID;
     String signName;
     String description;
+    String pathToFile;
 
     public ZodiacSigns() {
     }
@@ -324,32 +325,6 @@ public class ZodiacSigns {
                 + zodiacSign.getSignName() + "|"
                 + zodiacSign.getDescription());
         return;
-    }
-
-    public static String fullerID_EmptySpace(String entered, int sizeExample) {
-        int size = sizeExample - entered.length();
-        for (int i = 0; i < size; i++) {
-            entered = "0" + entered;
-        }
-        return entered + " ";
-    }
-
-    public static String fullEmptySpace(String entered, int sizeExample) {
-        entered = " " + entered;
-        int size = sizeExample - entered.length();
-        for (int i = 0; i < size; i++) {
-            entered += " ";
-        }
-        return entered;
-    }
-
-    public static boolean isNumber(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
     /*

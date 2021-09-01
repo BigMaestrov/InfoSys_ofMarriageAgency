@@ -10,18 +10,19 @@ import java.util.Scanner;
 /*
  *Реализация сущности "Работники"
  */
-public class Employee {
+public class Employee extends Table{
 
     String employeeID;
     String fullName;
     String age;
     String gender;
-    String adress;
+    String address;
     String phoneNumber;
     String passportData;
     String positionID;
+    String pathToFile;
 
-    public Employee() {
+    public Employee(){
     }
 
     public String getEmployeeID() {
@@ -134,12 +135,12 @@ public class Employee {
         }
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setByUserAdress(int size) {
@@ -153,7 +154,7 @@ public class Employee {
                 System.out.println("Размер введенной строки слишком большой");
             } else if (answear.length() < size) {
                 answear = fullEmptySpace(answear, size);
-                this.adress = answear;
+                this.address = answear;
                 break;
             }
         }
@@ -274,7 +275,7 @@ public class Employee {
             writer.append('/');
             writer.write(newEmployee.getGender());
             writer.append('/');
-            writer.write(newEmployee.getAdress());
+            writer.write(newEmployee.getAddress());
             writer.append('/');
             writer.write(newEmployee.getPhoneNumber());
             writer.append('/');
@@ -321,7 +322,7 @@ public class Employee {
                             employee[i].setGender(arrSplit[j]);
                             break;
                         case 4:
-                            employee[i].setAdress(arrSplit[j]);
+                            employee[i].setAddress(arrSplit[j]);
                             break;
                         case 5:
                             employee[i].setPhoneNumber(arrSplit[j]);
@@ -391,7 +392,7 @@ public class Employee {
                     writer.append('/');
                     writer.write(employee[i].getGender());
                     writer.append('/');
-                    writer.write(employee[i].getAdress());
+                    writer.write(employee[i].getAddress());
                     writer.append('/');
                     writer.write(employee[i].getPhoneNumber());
                     writer.append('/');
@@ -440,7 +441,7 @@ public class Employee {
                             employee[i].setGender(arrSplit[j]);
                             break;
                         case 4:
-                            employee[i].setAdress(arrSplit[j]);
+                            employee[i].setAddress(arrSplit[j]);
                             break;
                         case 5:
                             employee[i].setPhoneNumber(arrSplit[j]);
@@ -490,7 +491,7 @@ public class Employee {
                             employee[i].setGender(arrSplit[j]);
                             break;
                         case 4:
-                            employee[i].setAdress(arrSplit[j]);
+                            employee[i].setAddress(arrSplit[j]);
                             break;
                         case 5:
                             employee[i].setPhoneNumber(arrSplit[j]);
@@ -507,7 +508,7 @@ public class Employee {
                         employee[i].getFullName() + "|"
                         + employee[i].getAge() + "|"
                         + employee[i].getGender() + "|"
-                        + employee[i].getAdress() + "|"
+                        + employee[i].getAddress() + "|"
                         + employee[i].getPhoneNumber() + "|"
                         + employee[i].getPassportData() + "|");
                 if (i > 1) {
@@ -555,7 +556,7 @@ public class Employee {
                             employee[i].setGender(arrSplit[j]);
                             break;
                         case 4:
-                            employee[i].setAdress(arrSplit[j]);
+                            employee[i].setAddress(arrSplit[j]);
                             break;
                         case 5:
                             employee[i].setPhoneNumber(arrSplit[j]);
@@ -617,7 +618,7 @@ public class Employee {
                 + employee.getFullName() + "|"
                 + employee.getAge() + "|"
                 + employee.getGender() + "|"
-                + employee.getAdress() + "|"
+                + employee.getAddress() + "|"
                 + employee.getPhoneNumber() + "|"
                 + employee.getPassportData() + "|"
                 + employee.getPositionID());
@@ -655,7 +656,7 @@ public class Employee {
                             employee[i].setGender(arrSplit[j]);
                             break;
                         case 4:
-                            employee[i].setAdress(arrSplit[j]);
+                            employee[i].setAddress(arrSplit[j]);
                             break;
                         case 5:
                             employee[i].setPhoneNumber(arrSplit[j]);
@@ -673,7 +674,7 @@ public class Employee {
             sizes[1] = employee[0].getFullName().length();
             sizes[2] = employee[0].getAge().length();
             sizes[3] = employee[0].getGender().length();
-            sizes[4] = employee[0].getAdress().length();
+            sizes[4] = employee[0].getAddress().length();
             sizes[5] = employee[0].getPhoneNumber().length();
             sizes[6] = employee[0].getPassportData().length();
             sizes[7] = employee[0].getPositionID().length();
@@ -681,40 +682,6 @@ public class Employee {
             System.err.println("Ошибка чтения из файла \"Employee\"" + e);
         }
         return sizes;
-    }
-
-    /*
-    Метод заполнения ID до размера строк в текстовом файле
-     */
-    public static String fullerID_EmptySpace(String entered, int sizeExample) {
-        int size = sizeExample - entered.length();
-        for (int i = 0; i < size; i++) {
-            entered = "0" + entered;
-        }
-        return entered + " ";
-    }
-
-    /*
-    Метод заполнения полей до размера строк в текстовом файле
-     */
-    public static String fullEmptySpace(String entered, int sizeExample) {
-        int size = sizeExample - entered.length();
-        for (int i = 0; i < size; i++) {
-            entered += " ";
-        }
-        return entered;
-    }
-
-    /*
-    Метод проверки введенной строки на то, является ли она числом
-     */
-    public static boolean isNumber(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
     /*
@@ -749,7 +716,7 @@ public class Employee {
                             employee[i].setGender(arrSplit[j]);
                             break;
                         case 4:
-                            employee[i].setAdress(arrSplit[j]);
+                            employee[i].setAddress(arrSplit[j]);
                             break;
                         case 5:
                             employee[i].setPhoneNumber(arrSplit[j]);
@@ -808,7 +775,7 @@ public class Employee {
                             employee[i].setGender(arrSplit[j]);
                             break;
                         case 4:
-                            employee[i].setAdress(arrSplit[j]);
+                            employee[i].setAddress(arrSplit[j]);
                             break;
                         case 5:
                             employee[i].setPhoneNumber(arrSplit[j]);
@@ -826,7 +793,7 @@ public class Employee {
                             employee[i].getFullName() + "|"
                             + employee[i].getAge() + "|"
                             + employee[i].getGender() + "|"
-                            + employee[i].getAdress() + "|"
+                            + employee[i].getAddress() + "|"
                             + employee[i].getPhoneNumber() + "|"
                             + employee[i].getPassportData());
                 }
@@ -867,7 +834,7 @@ public class Employee {
                             employee[i].setGender(arrSplit[j]);
                             break;
                         case 4:
-                            employee[i].setAdress(arrSplit[j]);
+                            employee[i].setAddress(arrSplit[j]);
                             break;
                         case 5:
                             employee[i].setPhoneNumber(arrSplit[j]);
@@ -884,7 +851,7 @@ public class Employee {
                     System.out.println(employee[i].getFullName() + "|"
                             + employee[i].getAge() + "|"
                             + employee[i].getGender() + "|"
-                            + employee[i].getAdress() + "|"
+                            + employee[i].getAddress() + "|"
                             + employee[i].getPhoneNumber() + "|"
                             + employee[i].getPassportData());
                 }
@@ -927,7 +894,7 @@ public class Employee {
                             employee[i].setGender(arrSplit[j]);
                             break;
                         case 4:
-                            employee[i].setAdress(arrSplit[j]);
+                            employee[i].setAddress(arrSplit[j]);
                             break;
                         case 5:
                             employee[i].setPhoneNumber(arrSplit[j]);
@@ -945,7 +912,7 @@ public class Employee {
                             employee[i].getFullName() + "|"
                             + employee[i].getAge() + "|"
                             + employee[i].getGender() + "|"
-                            + employee[i].getAdress() + "|"
+                            + employee[i].getAddress() + "|"
                             + employee[i].getPhoneNumber() + "|"
                             + employee[i].getPassportData());
                 }
@@ -955,7 +922,7 @@ public class Employee {
                             employee[i].getFullName() + "|"
                             + employee[i].getAge() + "|"
                             + employee[i].getGender() + "|"
-                            + employee[i].getAdress() + "|"
+                            + employee[i].getAddress() + "|"
                             + employee[i].getPhoneNumber() + "|"
                             + employee[i].getPassportData());
                 }
