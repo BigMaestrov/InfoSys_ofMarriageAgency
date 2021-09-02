@@ -12,7 +12,8 @@ public class Menu {
     }
 
     public Menu() {
-        printIterface();
+        Table.readData();
+        Table.printData();
     }
 
     /*

@@ -415,7 +415,8 @@ public class Employee extends Table{
      */
     static void printEmployeeData() {
         try {
-            String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\Employee.txt";
+            String fileName = "C:\\Users\\Nikita\\IdeaProjects\\InfoSys_ofMarriageAgency\\TextFiles\\Employee.txt";
+            System.out.println(fileName);
             int numEmployee = getNumString(fileName);
             Employee[] employee = new Employee[numEmployee];
             Scanner sc = new Scanner(new File(fileName));

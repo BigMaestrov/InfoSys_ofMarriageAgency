@@ -8,7 +8,7 @@ import java.util.Scanner;
 /*
  *Реализация сущности "Дополнительные услуги"
  */
-public class AdditionalServices extends Table{
+public class AdditionalServices extends Table {
 
     public AdditionalServices() {
     }
@@ -17,7 +17,7 @@ public class AdditionalServices extends Table{
     String addServicesName;
     String addServicesDescription;
     String addServicesPrice;
-    String pathToFile;
+    static String pathToFile = "C:\\Users\\Nikita\\IdeaProjects\\InfoSys_ofMarriageAgency\\TextFiles\\AddServices.txt";
 
     public String getAddServicesID() {
         return addServicesID;
@@ -135,7 +135,7 @@ public class AdditionalServices extends Table{
     static void redactSelectedAdditionalServicesData() {
         try {
             //Считывает данные из файла
-            String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\AddServices.txt";
+            String fileName = pathToFile;
             int numAddServices = getNumString(fileName);
             AdditionalServices[] additionalServices = new AdditionalServices[numAddServices];
             Scanner sc = new Scanner(new File(fileName));
@@ -237,7 +237,7 @@ public class AdditionalServices extends Table{
     public static boolean isUnique(int index) {
         boolean flag = true;
         try {
-            String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\AddServices.txt";
+            String fileName = pathToFile;
             int numAddServ = getNumString(fileName);
             AdditionalServices[] additionalServices = new AdditionalServices[numAddServ];
             Scanner sc = new Scanner(new File(fileName));
@@ -296,7 +296,7 @@ public class AdditionalServices extends Table{
         newAddServ.setByUserAddServicesPrice(sizes[3]);
 
         //Запись данных в файл
-        String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\AddServices.txt";
+        String fileName = pathToFile;
         try (FileWriter writer = new FileWriter(fileName, true)) {
             writer.append('\n');
             writer.write(newAddServ.getAddServicesID());
@@ -339,39 +339,40 @@ public class AdditionalServices extends Table{
     Метод для вывода данных из таблицы "Дополнительные услуги"
      */
     public static void printAddServicesData() {
-
-        System.out.println("1");
         try {
-            String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\AddServices.txt";
-            int numAddServ = getNumString(fileName);
+            int numAddServ = getNumString(pathToFile);
             AdditionalServices[] additionalServices = new AdditionalServices[numAddServ];
-            Scanner sc = new Scanner(new File(fileName));
+            Scanner sc = new Scanner(pathToFile);
             //Инициализация объектов
             for (int i = 0; i < numAddServ; i++) {
                 additionalServices[i] = new AdditionalServices();
                 //Чтение файла
-                String s = sc.nextLine();
-                String[] arrSplit = s.split("/");
-                //Запись данных в объекты
-                for (int j = 0; j < arrSplit.length; j++) {
-                    switch (j) {
-                        case 0:
-                            additionalServices[i].setAddServicesID(arrSplit[j]);
-                            break;
-                        case 1:
-                            additionalServices[i].setAddServicesName(arrSplit[j]);
-                            break;
-                        case 2:
-                            additionalServices[i].setAddServicesDescription(arrSplit[j]);
-                            break;
-                        case 3:
-                            additionalServices[i].setAddServicesPrice(arrSplit[j]);
-                            break;
+                System.out.println("working");
+                if (sc.hasNextLine()) {
+                    String s = sc.nextLine();
+                    String[] arrSplit = s.split("/");
+
+                    //Запись данных в объекты
+                    for (int j = 0; j < arrSplit.length; j++) {
+                        switch (j) {
+                            case 0:
+                                additionalServices[i].setAddServicesID(arrSplit[j]);
+                                break;
+                            case 1:
+                                additionalServices[i].setAddServicesName(arrSplit[j]);
+                                break;
+                            case 2:
+                                additionalServices[i].setAddServicesDescription(arrSplit[j]);
+                                break;
+                            case 3:
+                                additionalServices[i].setAddServicesPrice(arrSplit[j]);
+                                break;
+                        }
                     }
                 }
                 printData(additionalServices[i]);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("Ошибка чтения из файла \"AddServices\"" + e);
         }
     }
@@ -381,7 +382,7 @@ public class AdditionalServices extends Table{
      */
     public static int[] getSizes(int[] sizes) {
         try {
-            String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\AddServices.txt";
+            String fileName = pathToFile;
             int numAddServ = getNumString(fileName);
             AdditionalServices[] additionalServices = new AdditionalServices[numAddServ];
             Scanner sc = new Scanner(new File(fileName));
@@ -424,7 +425,7 @@ public class AdditionalServices extends Table{
      */
     public static void printSelectedAddServiceData(int index) {
         try {
-            String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\AddServices.txt";
+            String fileName = pathToFile;
             int numAddServ = getNumString(fileName);
             AdditionalServices[] additionalServices = new AdditionalServices[numAddServ];
             Scanner sc = new Scanner(new File(fileName));
@@ -475,9 +476,9 @@ public class AdditionalServices extends Table{
     public static void printData(AdditionalServices additionalServices) {
         System.out.println(
                 additionalServices.getAddServicesID() + "|"
-                + additionalServices.getAddServicesName() + "|"
-                + additionalServices.getAddServicesDescription() + "|"
-                + additionalServices.getAddServicesPrice());
+                        + additionalServices.getAddServicesName() + "|"
+                        + additionalServices.getAddServicesDescription() + "|"
+                        + additionalServices.getAddServicesPrice());
         return;
     }
 
@@ -486,7 +487,7 @@ public class AdditionalServices extends Table{
      */
     static void printRequestServicesList(String ID) {
         try {
-            String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\AddServices.txt";
+            String fileName = pathToFile;
             int numAddServices = getNumString(fileName);
             AdditionalServices[] additionalServices = new AdditionalServices[numAddServices];
             Scanner sc = new Scanner(new File(fileName));
@@ -516,8 +517,8 @@ public class AdditionalServices extends Table{
                 if ((additionalServices[i].getAddServicesID().trim()).equals(ID.trim())) {
                     System.out.print(
                             additionalServices[i].getAddServicesName() + "|"
-                            + additionalServices[i].getAddServicesDescription() + "|"
-                            + additionalServices[i].getAddServicesPrice() + "|");
+                                    + additionalServices[i].getAddServicesDescription() + "|"
+                                    + additionalServices[i].getAddServicesPrice() + "|");
                 }
             }
         } catch (IOException e) {
@@ -530,7 +531,7 @@ public class AdditionalServices extends Table{
      */
     static void printRequestServicesList(int index) {
         try {
-            String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\AddServices.txt";
+            String fileName = pathToFile;
             int numAddServices = getNumString(fileName);
             AdditionalServices[] additionalServices = new AdditionalServices[numAddServices];
             Scanner sc = new Scanner(new File(fileName));
@@ -560,8 +561,8 @@ public class AdditionalServices extends Table{
                 if (i == index) {
                     System.out.print(
                             additionalServices[i].getAddServicesName() + "|"
-                            + additionalServices[i].getAddServicesDescription() + "|"
-                            + additionalServices[i].getAddServicesPrice() + "|");
+                                    + additionalServices[i].getAddServicesDescription() + "|"
+                                    + additionalServices[i].getAddServicesPrice() + "|");
                 }
             }
         } catch (IOException e) {
