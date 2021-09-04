@@ -681,7 +681,7 @@ public class Services extends Table{
                     AdditionalServices.printRequestServicesList(services[i].getServiceID_2().trim());
                     AdditionalServices.printRequestServicesList(services[i].getServiceID_3().trim());
                     System.out.print(services[i].getPrice() + "|");
-                    Employee.printRequestServicesList(services[i].getEmployeeID().trim());
+                    //Employee.printRequestServicesList(services[i].getEmployeeID().trim());
                 }
                 if (i == 0) {
                     Clients.printRequestServicesList(i);
@@ -689,7 +689,7 @@ public class Services extends Table{
                     AdditionalServices.printRequestServicesList(i);
                     AdditionalServices.printRequestServicesList(i);
                     System.out.print(services[i].getPrice() + "|");
-                    Employee.printRequestServicesList(i);
+                    //Employee.printRequestServicesList(i);
 
                 }
                 if (i == 1) {
@@ -698,7 +698,7 @@ public class Services extends Table{
                     AdditionalServices.printRequestServicesList(i);
                     AdditionalServices.printRequestServicesList(i);
                     System.out.print(services[i].getPrice() + "|");
-                    Employee.printRequestServicesList(i);
+                    //Employee.printRequestServicesList(i);
                 }
             }
         } catch (IOException e) {

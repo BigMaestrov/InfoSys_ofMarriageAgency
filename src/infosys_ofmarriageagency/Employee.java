@@ -5,12 +5,13 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
  *Реализация сущности "Работники"
  */
-public class Employee extends Table{
+public class Employee extends Table {
 
     String employeeID;
     String fullName;
@@ -20,9 +21,10 @@ public class Employee extends Table{
     String phoneNumber;
     String passportData;
     String positionID;
-    String pathToFile;
+    static ArrayList<Employee> employees = new ArrayList<Employee>();
+    static String pathToFile = "C:\\Users\\Nikita\\IdeaProjects\\InfoSys_ofMarriageAgency\\TextFiles\\Employee.txt";
 
-    public Employee(){
+    public Employee() {
     }
 
     public String getEmployeeID() {
@@ -249,20 +251,20 @@ public class Employee extends Table{
         //Инициализация доп услуги
         Employee newEmployee = new Employee();
         //Создание массива хранящего размер полей
-        int[] sizes = new int[8];
+        ArrayList<Integer> sizes = new ArrayList<Integer>();
         sizes = getSizes(sizes);
 
         System.out.println("Пример заполнения данных Сотрудника:");
         Employee.printSelectedEmployeeData(1);
 
-        newEmployee.setByUserEmployeeID(sizes[0]);
-        newEmployee.setByUserFullName(sizes[1]);
-        newEmployee.setByUserAge(sizes[2]);
-        newEmployee.setByUserGender(sizes[3]);
-        newEmployee.setByUserAdress(sizes[4]);
-        newEmployee.setByUserPhoneNumber(sizes[5]);
-        newEmployee.setByUserPassportData(sizes[6]);
-        newEmployee.setByUserPositionID(sizes[7]);
+        newEmployee.setByUserEmployeeID(sizes.get(0));
+        newEmployee.setByUserFullName(sizes.get(1));
+        newEmployee.setByUserAge(sizes.get(2));
+        newEmployee.setByUserGender(sizes.get(3));
+        newEmployee.setByUserAdress(sizes.get(4));
+        newEmployee.setByUserPhoneNumber(sizes.get(5));
+        newEmployee.setByUserPassportData(sizes.get(6));
+        newEmployee.setByUserPositionID(sizes.get(7));
 
         //Запись данных в файл
         try (FileWriter writer = new FileWriter(fileName, true)) {
@@ -295,55 +297,14 @@ public class Employee extends Table{
      */
     static void redactSelectedEmployeeData() {
         try {
-            //Считывает данные из файла
-            String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\Employee.txt";
-            int numEmployee = getNumString(fileName);
-            Employee[] employee = new Employee[numEmployee];
-            Scanner sc = new Scanner(new File(fileName));
-            //Инициализация объектов
-            for (int i = 0; i < numEmployee; i++) {
-                employee[i] = new Employee();
-                //Чтение файла
-                String s = sc.nextLine();
-                String[] arrSplit = s.split("/");
-                //Запись данных в объекты
-                for (int j = 0; j < arrSplit.length; j++) {
-                    switch (j) {
-                        case 0:
-                            employee[i].setEmployeeID(arrSplit[j]);
-                            break;
-                        case 1:
-                            employee[i].setFullName(arrSplit[j]);
-                            break;
-                        case 2:
-                            employee[i].setAge(arrSplit[j]);
-                            break;
-                        case 3:
-                            employee[i].setGender(arrSplit[j]);
-                            break;
-                        case 4:
-                            employee[i].setAddress(arrSplit[j]);
-                            break;
-                        case 5:
-                            employee[i].setPhoneNumber(arrSplit[j]);
-                            break;
-                        case 6:
-                            employee[i].setPassportData(arrSplit[j]);
-                            break;
-                        case 7:
-                            employee[i].setPositionID(arrSplit[j]);
-                            break;
-                    }
-                }
-                printData(employee[i]);
-            }
+            printEmployeeData();
             //Спрашивает у пользователя номер строки для редактирования
             String userEnter;
             int answear;
             Scanner in = new Scanner(System.in);
             //Создает новый объект для записи данных
             Employee newEmployee = new Employee();
-            int[] sizes = new int[3];
+            ArrayList<Integer> sizes = new ArrayList<Integer>();
             sizes = getSizes(sizes);
             System.out.println("Введите Код Сотрудника для редактирования" + "\n" + ">>");
             while (true) {
@@ -359,49 +320,48 @@ public class Employee extends Table{
                     System.out.print("Введите корректный Код сотрудника" + "\n" + ">>");
                     continue;
                 }
-                userEnter = fullerID_EmptySpace(userEnter, sizes[0]);
+                userEnter = fullerID_EmptySpace(userEnter, sizes.get(0));
                 break;
             }
             newEmployee.setEmployeeID(userEnter);
-            newEmployee.setByUserFullName(sizes[1]);
-            newEmployee.setByUserAge(sizes[2]);
-            newEmployee.setByUserGender(sizes[3]);
-            newEmployee.setByUserAdress(sizes[4]);
-            newEmployee.setByUserPhoneNumber(sizes[5]);
-            newEmployee.setByUserPassportData(sizes[6]);
-            newEmployee.setByUserPositionID(sizes[7]);
+            newEmployee.setByUserFullName(sizes.get(1));
+            newEmployee.setByUserAge(sizes.get(2));
+            newEmployee.setByUserGender(sizes.get(3));
+            newEmployee.setByUserAdress(sizes.get(4));
+            newEmployee.setByUserPhoneNumber(sizes.get(5));
+            newEmployee.setByUserPassportData(sizes.get(6));
+            newEmployee.setByUserPositionID(sizes.get(7));
             //Записывает данные нового работника в массив
-            employee[answear + 1] = newEmployee;
-            try (PrintWriter writer0 = new PrintWriter(fileName)) {
+            employees.add(answear, newEmployee);
+            try (PrintWriter writer0 = new PrintWriter(pathToFile)) {
                 writer0.print("");
             }
             //Создает новый пустой файл
-            File file1 = new File(fileName);
+            File file1 = new File(pathToFile);
             //Записывает измененный массив в файл
-            try (FileWriter writer = new FileWriter(fileName, true)) {
-                System.out.println(sizes.length);
-                for (int i = 0; i < numEmployee; i++) {
+            try (FileWriter writer = new FileWriter(pathToFile, true)) {
+                System.out.println(sizes.size());
+                for (int i = 0; i < employees.size(); i++) {
                     if (i > 0) {
                         writer.append('\n');
                     }
-                    writer.write(employee[i].getEmployeeID());
+                    writer.write(employees.get(i).getEmployeeID());
                     writer.append('/');
-                    writer.write(employee[i].getFullName());
+                    writer.write(employees.get(i).getFullName());
                     writer.append('/');
-                    writer.write(employee[i].getAge());
+                    writer.write(employees.get(i).getAge());
                     writer.append('/');
-                    writer.write(employee[i].getGender());
+                    writer.write(employees.get(i).getGender());
                     writer.append('/');
-                    writer.write(employee[i].getAddress());
+                    writer.write(employees.get(i).getAddress());
                     writer.append('/');
-                    writer.write(employee[i].getPhoneNumber());
+                    writer.write(employees.get(i).getPhoneNumber());
                     writer.append('/');
-                    writer.write(employee[i].getPassportData());
+                    writer.write(employees.get(i).getPassportData());
                     writer.append('/');
-                    writer.write(employee[i].getPositionID());
+                    writer.write(employees.get(i).getPositionID());
                     writer.close();
                 }
-                writer.close();
             } catch (IOException e) {
                 System.out.println("Ошибка записи в файл \"Employee\"" + e);
             }
@@ -413,16 +373,11 @@ public class Employee extends Table{
     /*
     Метод вывода данных из таблицы "Сотрудники"
      */
-    static void printEmployeeData() {
+    public static void readEmployeeData() {
         try {
-            String fileName = "C:\\Users\\Nikita\\IdeaProjects\\InfoSys_ofMarriageAgency\\TextFiles\\Employee.txt";
-            System.out.println(fileName);
-            int numEmployee = getNumString(fileName);
-            Employee[] employee = new Employee[numEmployee];
-            Scanner sc = new Scanner(new File(fileName));
-            //Инициализация объектов
-            for (int i = 0; i < numEmployee; i++) {
-                employee[i] = new Employee();
+            Scanner sc = new Scanner(new File(pathToFile));
+            while (sc.hasNextLine()) {
+                Employee employee = new Employee();
                 //Чтение файла
                 String s = sc.nextLine();
                 String[] arrSplit = s.split("/");
@@ -430,41 +385,70 @@ public class Employee extends Table{
                 for (int j = 0; j < arrSplit.length; j++) {
                     switch (j) {
                         case 0:
-                            employee[i].setEmployeeID(arrSplit[j]);
+                            employee.setEmployeeID(arrSplit[j]);
                             break;
                         case 1:
-                            employee[i].setFullName(arrSplit[j]);
+                            employee.setFullName(arrSplit[j]);
                             break;
                         case 2:
-                            employee[i].setAge(arrSplit[j]);
+                            employee.setAge(arrSplit[j]);
                             break;
                         case 3:
-                            employee[i].setGender(arrSplit[j]);
+                            employee.setGender(arrSplit[j]);
                             break;
                         case 4:
-                            employee[i].setAddress(arrSplit[j]);
+                            employee.setAddress(arrSplit[j]);
                             break;
                         case 5:
-                            employee[i].setPhoneNumber(arrSplit[j]);
+                            employee.setPhoneNumber(arrSplit[j]);
                             break;
                         case 6:
-                            employee[i].setPassportData(arrSplit[j]);
+                            employee.setPassportData(arrSplit[j]);
                             break;
                         case 7:
-                            employee[i].setPositionID(arrSplit[j]);
+                            employee.setPositionID(arrSplit[j]);
                             break;
                     }
                 }
-                printData(employee[i]);
+                employees.add(employee);
             }
         } catch (IOException e) {
             System.err.println("Ошибка чтения из файла \"Employee\"" + e);
         }
     }
 
+    public static void printEmployeeData() {
+        for (int i = 0; i < employees.size(); i++) {
+            System.out.println(
+                    employees.get(i).getEmployeeID() + "|"
+                            + employees.get(i).getFullName() + "|"
+                            + employees.get(i).getAge() + "|"
+                            + employees.get(i).getGender() + "|"
+                            + employees.get(i).getAddress() + "|"
+                            + employees.get(i).getPhoneNumber() + "|"
+                            + employees.get(i).getPassportData() + "|"
+                            + employees.get(i).getPositionID());
+        }
+    }
+
+    public static void printSelectedEmployeeData(int i) {
+        i--;
+        System.out.println(
+                employees.get(i).getEmployeeID() + "|"
+                        + employees.get(i).getFullName() + "|"
+                        + employees.get(i).getAge() + "|"
+                        + employees.get(i).getGender() + "|"
+                        + employees.get(i).getAddress() + "|"
+                        + employees.get(i).getPhoneNumber() + "|"
+                        + employees.get(i).getPassportData() + "|"
+                        + employees.get(i).getPositionID());
+
+    }
+
+/*
     /*
     Метод вывода в консоль запроса "Отдел кадров"
-     */
+
     static void printRequestEmployeeData() {
         try {
             String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\Employee.txt";
@@ -507,11 +491,11 @@ public class Employee extends Table{
                 }
                 System.out.print(
                         employee[i].getFullName() + "|"
-                        + employee[i].getAge() + "|"
-                        + employee[i].getGender() + "|"
-                        + employee[i].getAddress() + "|"
-                        + employee[i].getPhoneNumber() + "|"
-                        + employee[i].getPassportData() + "|");
+                                + employee[i].getAge() + "|"
+                                + employee[i].getGender() + "|"
+                                + employee[i].getAddress() + "|"
+                                + employee[i].getPhoneNumber() + "|"
+                                + employee[i].getPassportData() + "|");
                 if (i > 1) {
                     Position.printRequestPositionData(employee[i].getPositionID());
                 }
@@ -527,160 +511,40 @@ public class Employee extends Table{
             System.err.println("Ошибка чтения из файла \"Employee\"" + e);
         }
     }
-
-    static void printSelectedEmployeeData(int index) {
-        try {
-            boolean flag = false;
-            String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\Employee.txt";
-            int numEmployee = getNumString(fileName);
-            Employee[] employee = new Employee[numEmployee];
-            Scanner sc = new Scanner(new File(fileName));
-            //Инициализация объектов
-            for (int i = 0; i < numEmployee; i++) {
-                employee[i] = new Employee();
-                //Чтение файла
-                String s = sc.nextLine();
-                String[] arrSplit = s.split("/");
-                //Запись данных в объекты
-                for (int j = 0; j < arrSplit.length; j++) {
-                    switch (j) {
-                        case 0:
-                            employee[i].setEmployeeID(arrSplit[j]);
-                            break;
-                        case 1:
-                            employee[i].setFullName(arrSplit[j]);
-                            break;
-                        case 2:
-                            employee[i].setAge(arrSplit[j]);
-                            break;
-                        case 3:
-                            employee[i].setGender(arrSplit[j]);
-                            break;
-                        case 4:
-                            employee[i].setAddress(arrSplit[j]);
-                            break;
-                        case 5:
-                            employee[i].setPhoneNumber(arrSplit[j]);
-                            break;
-                        case 6:
-                            employee[i].setPassportData(arrSplit[j]);
-                            break;
-                        case 7:
-                            employee[i].setPositionID(arrSplit[j]);
-                            break;
-                    }
-                }
-                if (i == 0) {
-                    printData(employee[i]);
-
-                }
-                if (i == 1) {
-                    printData(employee[i]);
-                }
-                if (i == index + 1) {
-                    flag = true;
-                    printData(employee[i]);
-                }
-            }
-            if (!flag) {
-                System.out.println("Сотрудник отсутствует в списке");
-            }
-        } catch (IOException e) {
-            System.err.println("Ошибка чтения из файла \"Employee\"" + e);
-        }
-    }
-
-    /*
-    Метод подсчета кол-ва строк в файле
-     */
-    public static int getNumString(String fileName) {
-        int numString = 0;
-        try {
-            File addServ = new File(fileName);
-            FileInputStream file = new FileInputStream(addServ);
-            byte[] byteArray = new byte[(int) addServ.length()];
-            file.read(byteArray);
-            String data = new String(byteArray);
-            String[] stringArray = data.split("\n");
-            numString = stringArray.length;
-            file.close();
-        } catch (IOException e) {
-            System.err.println("Ошибка чтения из файла \"Employee\"" + e);
-        }
-        return numString;
-    }
-
+/*
     /*
     Метод для вывода данных
-     */
+
     public static void printData(Employee employee) {
         System.out.println(
                 employee.getEmployeeID() + "|"
-                + employee.getFullName() + "|"
-                + employee.getAge() + "|"
-                + employee.getGender() + "|"
-                + employee.getAddress() + "|"
-                + employee.getPhoneNumber() + "|"
-                + employee.getPassportData() + "|"
-                + employee.getPositionID());
+                        + employee.getFullName() + "|"
+                        + employee.getAge() + "|"
+                        + employee.getGender() + "|"
+                        + employee.getAddress() + "|"
+                        + employee.getPhoneNumber() + "|"
+                        + employee.getPassportData() + "|"
+                        + employee.getPositionID());
         return;
     }
+*/
 
     /*
     Метод подсчета размера полей в таблице
      */
-    static int[] getSizes(int[] sizes) {
+    static ArrayList<Integer> getSizes(ArrayList<Integer> sizes) {
         try {
-            String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\Employee.txt";
-            int numEmployee = getNumString(fileName);
-            Employee[] employee = new Employee[numEmployee];
-            Scanner sc = new Scanner(new File(fileName));
-            //Инициализация объектов
-            for (int i = 0; i < numEmployee; i++) {
-                employee[i] = new Employee();
-                //Чтение файла
+            Scanner sc = new Scanner(new File(pathToFile));
+            if (sc.hasNextLine()) {
+                Employee employee = new Employee();
                 String s = sc.nextLine();
                 String[] arrSplit = s.split("/");
-                //Запись данных в объекты
-                for (int j = 0; j < arrSplit.length; j++) {
-                    switch (j) {
-                        case 0:
-                            employee[i].setEmployeeID(arrSplit[j]);
-                            break;
-                        case 1:
-                            employee[i].setFullName(arrSplit[j]);
-                            break;
-                        case 2:
-                            employee[i].setAge(arrSplit[j]);
-                            break;
-                        case 3:
-                            employee[i].setGender(arrSplit[j]);
-                            break;
-                        case 4:
-                            employee[i].setAddress(arrSplit[j]);
-                            break;
-                        case 5:
-                            employee[i].setPhoneNumber(arrSplit[j]);
-                            break;
-                        case 6:
-                            employee[i].setPassportData(arrSplit[j]);
-                            break;
-                        case 7:
-                            employee[i].setPositionID(arrSplit[j]);
-                            break;
-                    }
+                for (int i = 0; i < arrSplit.length; i++) {
+                    sizes.add(arrSplit[i].length());
                 }
             }
-            sizes[0] = employee[0].getEmployeeID().length();
-            sizes[1] = employee[0].getFullName().length();
-            sizes[2] = employee[0].getAge().length();
-            sizes[3] = employee[0].getGender().length();
-            sizes[4] = employee[0].getAddress().length();
-            sizes[5] = employee[0].getPhoneNumber().length();
-            sizes[6] = employee[0].getPassportData().length();
-            sizes[7] = employee[0].getPositionID().length();
         } catch (IOException e) {
-            System.err.println("Ошибка чтения из файла \"Employee\"" + e);
+            System.err.println("Ошибка чтения из файла " + pathToFile + e);
         }
         return sizes;
     }
@@ -690,64 +554,22 @@ public class Employee extends Table{
      */
     static boolean isUnique(int index) {
         boolean flag = true;
-        try {
-            String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\Employee.txt";
-            int numEmployee = getNumString(fileName);
-            Employee[] employee = new Employee[numEmployee];
-            Scanner sc = new Scanner(new File(fileName));
-            //Инициализация объектов
-            for (int i = 0; i < numEmployee; i++) {
-                employee[i] = new Employee();
-                //Чтение файла
-                String s = sc.nextLine();
-                String[] arrSplit = s.split("/");
-                //Запись данных в объекты
-                for (int j = 0; j < arrSplit.length; j++) {
-                    switch (j) {
-                        case 0:
-                            employee[i].setEmployeeID(arrSplit[j]);
-                            break;
-                        case 1:
-                            employee[i].setFullName(arrSplit[j]);
-                            break;
-                        case 2:
-                            employee[i].setAge(arrSplit[j]);
-                            break;
-                        case 3:
-                            employee[i].setGender(arrSplit[j]);
-                            break;
-                        case 4:
-                            employee[i].setAddress(arrSplit[j]);
-                            break;
-                        case 5:
-                            employee[i].setPhoneNumber(arrSplit[j]);
-                            break;
-                        case 6:
-                            employee[i].setPassportData(arrSplit[j]);
-                            break;
-                        case 7:
-                            employee[i].setPositionID(arrSplit[j]);
-                            break;
-                    }
+        for (int i = 0; i < employees.size(); i++) {
+            try {
+                Integer i2 = Integer.valueOf(employees.get(i).getEmployeeID().trim());
+                if (i2 == index + 1) {
+                    flag = false;
                 }
-                try {
-                    Integer i2 = Integer.valueOf(employee[i].getEmployeeID().trim());
-                    if (i2 == index + 1) {
-                        flag = false;
-                    }
-                } catch (NumberFormatException e) {
-                }
+            } catch (NumberFormatException e) {
             }
-
-        } catch (IOException e) {
-            System.err.println("Ошибка чтения из файла \"Employee\"" + e);
         }
         return flag;
     }
 
     /*
+    /*
     Метод вывода в консоль запроса "Список Услуг"
-     */
+
     static void printRequestServicesList(String ID) {
         try {
             String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\Employee.txt";
@@ -792,11 +614,11 @@ public class Employee extends Table{
                 if ((employee[i].getEmployeeID().trim()).equals(ID.trim())) {
                     System.out.println(
                             employee[i].getFullName() + "|"
-                            + employee[i].getAge() + "|"
-                            + employee[i].getGender() + "|"
-                            + employee[i].getAddress() + "|"
-                            + employee[i].getPhoneNumber() + "|"
-                            + employee[i].getPassportData());
+                                    + employee[i].getAge() + "|"
+                                    + employee[i].getGender() + "|"
+                                    + employee[i].getAddress() + "|"
+                                    + employee[i].getPhoneNumber() + "|"
+                                    + employee[i].getPassportData());
                 }
             }
         } catch (IOException e) {
@@ -806,7 +628,7 @@ public class Employee extends Table{
 
     /*
     Метод вывода в консоль запроса "Список Услуг"
-     */
+
     static void printRequestServicesList(int index) {
         try {
             String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\Employee.txt";
@@ -864,10 +686,10 @@ public class Employee extends Table{
 
     /*
     Метод Фильтрующий по Коду Должности
-     */
+
     static void FilterByPositionID(String ID) {
         boolean flag = false;
-        ID=Employee.fullerID_EmptySpace(ID, 8);
+        ID = Employee.fullerID_EmptySpace(ID, 8);
         try {
             String fileName = "C:\\Users\\nikit\\OneDrive\\Рабочий стол\\Практика\\Employee.txt";
             int numEmployee = getNumString(fileName);
@@ -908,31 +730,33 @@ public class Employee extends Table{
                             break;
                     }
                 }
-                if (i == 0 || i == 1 ) {
+                if (i == 0 || i == 1) {
                     System.out.println(
                             employee[i].getFullName() + "|"
-                            + employee[i].getAge() + "|"
-                            + employee[i].getGender() + "|"
-                            + employee[i].getAddress() + "|"
-                            + employee[i].getPhoneNumber() + "|"
-                            + employee[i].getPassportData());
+                                    + employee[i].getAge() + "|"
+                                    + employee[i].getGender() + "|"
+                                    + employee[i].getAddress() + "|"
+                                    + employee[i].getPhoneNumber() + "|"
+                                    + employee[i].getPassportData());
                 }
                 if ((employee[i].getPositionID().trim()).equals(ID.trim())) {
-                    flag=true;
+                    flag = true;
                     System.out.println(
                             employee[i].getFullName() + "|"
-                            + employee[i].getAge() + "|"
-                            + employee[i].getGender() + "|"
-                            + employee[i].getAddress() + "|"
-                            + employee[i].getPhoneNumber() + "|"
-                            + employee[i].getPassportData());
+                                    + employee[i].getAge() + "|"
+                                    + employee[i].getGender() + "|"
+                                    + employee[i].getAddress() + "|"
+                                    + employee[i].getPhoneNumber() + "|"
+                                    + employee[i].getPassportData());
                 }
             }
         } catch (IOException e) {
             System.err.println("Ошибка чтения из файла \"Employee\"" + e);
         }
-        if(flag == false){
+        if (flag == false) {
             System.out.println("Сотрудник не найден");
         }
     }
+}
+*/
 }

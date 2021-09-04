@@ -3,6 +3,7 @@ package infosys_ofmarriageagency;
 import java.io.*;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
@@ -13,6 +14,7 @@ public class AdditionalServices extends Table {
     public AdditionalServices() {
     }
 
+    ArrayList<AdditionalServices> additionalServices = new ArrayList<AdditionalServices>();
     String addServicesID;
     String addServicesName;
     String addServicesDescription;

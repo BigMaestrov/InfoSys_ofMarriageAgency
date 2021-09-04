@@ -9,10 +9,6 @@ public class Table {
 
     static String pathToFile = "C:\\Users\\Nikita\\IdeaProjects\\InfoSys_ofMarriageAgency\\TextFiles\\Test.txt";
     static ArrayList<Table> tables= new ArrayList<Table>();
-    String one;
-    String two;
-    String three;
-    String four;
 
     public String getPathToFile() {
         return pathToFile;
@@ -22,62 +18,18 @@ public class Table {
         this.pathToFile = pathToFile;
     }
 
-    public String getFour() {
-        return four;
-    }
-
-    public void setFour(String four) {
-        this.four = four;
-    }
-
-    public String getThree() {
-        return three;
-    }
-
-    public void setThree(String three) {
-        this.three = three;
-    }
-
-    public String getTwo() {
-        return two;
-    }
-
-    public void setTwo(String two) {
-        this.two = two;
-    }
-
-    public String getOne() {
-        return one;
-    }
-
-    public void setOne(String one) {
-        this.one = one;
-    }
 
     public static void readData() {
         try {
             Scanner sc = new Scanner(new File(pathToFile));
-            //Инициализация объектов
-            Table table = new Table();
             while(sc.hasNextLine()){
+                Table table = new Table();
                 //Чтение файла
                 String s = sc.nextLine();
                 String[] arrSplit = s.split("/");
                 //Запись данных в объекты
                 for (int j = 0; j < arrSplit.length; j++) {
                     switch (j) {
-                        case 0:
-                            table.setOne(arrSplit[j]);
-                            break;
-                        case 1:
-                            table.setTwo(arrSplit[j]);
-                            break;
-                        case 2:
-                            table.setThree(arrSplit[j]);
-                            break;
-                        case 3:
-                            table.setFour(arrSplit[j]);
-                            break;
                     }
                 }
                 tables.add(table);
@@ -95,12 +47,7 @@ public class Table {
 
     }
 
-    public static void printData() {
-        System.out.println(tables.size());
-        for(int i = 0; i<tables.size();i++){
-            System.out.println(tables.get(i).getOne()+tables.get(i).getTwo() + tables.get(i).getThree() + tables.get(i).getFour());
-        }
-    }
+    public void printData(){}
 
     /*
     Метод проверки введенной строки на то, является ли она числом

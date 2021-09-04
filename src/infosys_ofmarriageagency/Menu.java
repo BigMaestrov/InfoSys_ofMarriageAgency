@@ -12,17 +12,16 @@ public class Menu {
     }
 
     public Menu() {
-        Table.readData();
-        Table.printData();
+        printInterface();
     }
 
     /*
     Метод вывода пользовательского интерфейса в консоль
     */
-    public static void printIterface() {
+    public static void printInterface() {
         try {
             String userEnter;
-            int answear;
+            int answer;
             OUTER:
             while (true) {
                 System.out.print("Выберите номер Операции:" + "\n"
@@ -46,8 +45,8 @@ public class Menu {
                     System.out.print("Введите корректный номер операции" + "\n" + ">>");
                     userEnter = in.nextLine();
                 }
-                answear = Integer.parseInt(userEnter);
-                switch (answear) {
+                answer = Integer.parseInt(userEnter);
+                switch (answer) {
                     //1.Сотрудники
                     case 1: {
                         OUT:
@@ -66,9 +65,10 @@ public class Menu {
                                 System.out.print("Введите корректный номер операции" + "\n" + ">>");
                                 userEnter = in.nextLine();
                             }
-                            answear = Integer.parseInt(userEnter);
-                            switch (answear) {
+                            answer = Integer.parseInt(userEnter);
+                            switch (answer) {
                                 case 1: {
+                                    Employee.readEmployeeData();
                                     Employee.printEmployeeData();
                                     break;
                                 }
@@ -80,8 +80,8 @@ public class Menu {
                                         System.out.print("Введите корректный Код сотрудника" + "\n" + ">>");
                                         userEnter = in.nextLine();
                                     }
-                                    answear = Integer.parseInt(userEnter);
-                                    Employee.printSelectedEmployeeData(answear);
+                                    answer = Integer.parseInt(userEnter);
+                                    Employee.printSelectedEmployeeData(answer);
                                     break;
                                 }
                                 case 3: {
@@ -121,8 +121,8 @@ public class Menu {
                                 System.out.print("Введите корректный номер операции" + "\n" + ">>");
                                 userEnter = in.nextLine();
                             }
-                            answear = Integer.parseInt(userEnter);
-                            switch (answear) {
+                            answer = Integer.parseInt(userEnter);
+                            switch (answer) {
                                 case 1: {
                                     Position.printPositionData();
                                     break;
@@ -135,8 +135,8 @@ public class Menu {
                                         System.out.print("Введите корректный Код сотрудника" + "\n" + ">>");
                                         userEnter = in.nextLine();
                                     }
-                                    answear = Integer.parseInt(userEnter);
-                                    Position.printSelectedPositionData(answear);
+                                    answer = Integer.parseInt(userEnter);
+                                    Position.printSelectedPositionData(answer);
                                     break;
                                 }
                                 case 3: {
@@ -176,8 +176,8 @@ public class Menu {
                                 System.out.print("Введите корректный номер операции" + "\n" + ">>");
                                 userEnter = in.nextLine();
                             }
-                            answear = Integer.parseInt(userEnter);
-                            switch (answear) {
+                            answer = Integer.parseInt(userEnter);
+                            switch (answer) {
                                 case 1: {
                                     ZodiacSigns.printZodiacSignsData();
                                     break;
@@ -190,8 +190,8 @@ public class Menu {
                                         System.out.print("Введите корректный Код сотрудника" + "\n" + ">>");
                                         userEnter = in.nextLine();
                                     }
-                                    answear = Integer.parseInt(userEnter);
-                                    ZodiacSigns.printSelectedZodiacSignsData(answear);
+                                    answer = Integer.parseInt(userEnter);
+                                    ZodiacSigns.printSelectedZodiacSignsData(answer);
                                     break;
                                 }
                                 case 3: {
@@ -231,8 +231,8 @@ public class Menu {
                                 System.out.print("Введите корректный номер операции" + "\n" + ">>");
                                 userEnter = in.nextLine();
                             }
-                            answear = Integer.parseInt(userEnter);
-                            switch (answear) {
+                            answer = Integer.parseInt(userEnter);
+                            switch (answer) {
                                 case 1: {
                                     Relations.printRelationsData();
                                     break;
@@ -245,8 +245,8 @@ public class Menu {
                                         System.out.print("Введите корректный Код сотрудника" + "\n" + ">>");
                                         userEnter = in.nextLine();
                                     }
-                                    answear = Integer.parseInt(userEnter);
-                                    Relations.printSelectedRelationsData(answear);
+                                    answer = Integer.parseInt(userEnter);
+                                    Relations.printSelectedRelationsData(answer);
                                     break;
                                 }
                                 case 3: {
@@ -286,8 +286,8 @@ public class Menu {
                                 System.out.print("Введите корректный номер операции" + "\n" + ">>");
                                 userEnter = in.nextLine();
                             }
-                            answear = Integer.parseInt(userEnter);
-                            switch (answear) {
+                            answer = Integer.parseInt(userEnter);
+                            switch (answer) {
                                 case 1: {
                                     Nationalities.printNationalitiesData();
                                     break;
@@ -300,8 +300,8 @@ public class Menu {
                                         System.out.print("Введите корректный Код сотрудника" + "\n" + ">>");
                                         userEnter = in.nextLine();
                                     }
-                                    answear = Integer.parseInt(userEnter);
-                                    Nationalities.printSelectedNationalitiesData(answear);
+                                    answer = Integer.parseInt(userEnter);
+                                    Nationalities.printSelectedNationalitiesData(answer);
                                     break;
                                 }
                                 case 3: {
@@ -341,8 +341,8 @@ public class Menu {
                                 System.out.print("Введите корректный номер операции" + "\n" + ">>");
                                 userEnter = in.nextLine();
                             }
-                            answear = Integer.parseInt(userEnter);
-                            switch (answear) {
+                            answer = Integer.parseInt(userEnter);
+                            switch (answer) {
                                 case 1: {
                                     AdditionalServices.printAddServicesData();
                                     break;
@@ -355,8 +355,8 @@ public class Menu {
                                         System.out.print("Введите корректный Код сотрудника" + "\n" + ">>");
                                         userEnter = in.nextLine();
                                     }
-                                    answear = Integer.parseInt(userEnter);
-                                    AdditionalServices.printSelectedAddServiceData(answear);
+                                    answer = Integer.parseInt(userEnter);
+                                    AdditionalServices.printSelectedAddServiceData(answer);
                                     break;
                                 }
                                 case 3: {
@@ -396,8 +396,8 @@ public class Menu {
                                 System.out.print("Введите корректный номер операции" + "\n" + ">>");
                                 userEnter = in.nextLine();
                             }
-                            answear = Integer.parseInt(userEnter);
-                            switch (answear) {
+                            answer = Integer.parseInt(userEnter);
+                            switch (answer) {
                                 case 1: {
                                     Clients.printClientsData();
                                     break;
@@ -410,8 +410,8 @@ public class Menu {
                                         System.out.print("Введите корректный Код сотрудника" + "\n" + ">>");
                                         userEnter = in.nextLine();
                                     }
-                                    answear = Integer.parseInt(userEnter);
-                                    Clients.printSelectedClientsData(answear);
+                                    answer = Integer.parseInt(userEnter);
+                                    Clients.printSelectedClientsData(answer);
                                     break;
                                 }
                                 case 3: {
@@ -451,8 +451,8 @@ public class Menu {
                                 System.out.print("Введите корректный номер операции" + "\n" + ">>");
                                 userEnter = in.nextLine();
                             }
-                            answear = Integer.parseInt(userEnter);
-                            switch (answear) {
+                            answer = Integer.parseInt(userEnter);
+                            switch (answer) {
                                 case 1: {
                                     Services.printServicesData();
                                     break;
@@ -465,8 +465,8 @@ public class Menu {
                                         System.out.print("Введите корректный Код сотрудника" + "\n" + ">>");
                                         userEnter = in.nextLine();
                                     }
-                                    answear = Integer.parseInt(userEnter);
-                                    Services.printSelectedServicesData(answear);
+                                    answer = Integer.parseInt(userEnter);
+                                    Services.printSelectedServicesData(answer);
                                     break;
                                 }
                                 case 3: {
@@ -504,18 +504,18 @@ public class Menu {
                                 System.out.print("Введите корректный номер Запроса" + "\n" + ">>");
                                 userEnter = in.nextLine();
                             }
-                            answear = Integer.parseInt(userEnter);
-                            switch (answear) {
+                            answer = Integer.parseInt(userEnter);
+                            switch (answer) {
                                 case 1: {
-                                    Employee.printRequestEmployeeData();
+                                    //Employee.printRequestEmployeeData();
                                     break;
                                 }
                                 case 2: {
-                                    Clients.printRequestClientData();
+                                    //Clients.printRequestClientData();
                                     break;
                                 }
                                 case 3: {
-                                    Services.printRequestServicesList();
+                                    //Services.printRequestServicesList();
                                     break;
                                 }
                                 case 4: {
@@ -549,8 +549,8 @@ public class Menu {
                                 System.out.print("Введите корректный номер Запроса" + "\n" + ">>");
                                 userEnter = in.nextLine();
                             }
-                            answear = Integer.parseInt(userEnter);
-                            switch (answear) {
+                            answer = Integer.parseInt(userEnter);
+                            switch (answer) {
                                 case 1: {
                                     System.out.print("Введите Код Должности" + "\n" + ">>");
                                     userEnter = in.nextLine();
@@ -559,7 +559,7 @@ public class Menu {
                                         System.out.print("Введите корректный Код Должности" + "\n" + ">>");
                                         userEnter = in.nextLine();
                                     }
-                                    Employee.FilterByPositionID(userEnter);
+                                    //Employee.FilterByPositionID(userEnter);
                                     break;
                                 }
                                 case 2: {
